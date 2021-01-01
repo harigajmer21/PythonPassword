@@ -8,7 +8,7 @@ import bcrypt
 #ip = '127.0.0.1'
 #sock = socket.socket()
 #sock.bind((ip, 9090))
-
+#Hari gajmer developer
 #typical bandit findings
 #>>> bandit -r <folder>
 #deprecated md5 will not be found by sonar...
