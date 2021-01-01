@@ -1,7 +1,7 @@
 import unittest
 import Password
 
-class testPassword(unittest.TestCase):
+class TestPasswordModule(unittest.TestCase):
     def test1(self):
         True
 
