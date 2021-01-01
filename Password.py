@@ -14,7 +14,7 @@ class Password:
         return hashed_password
 
     def hash_check(self, cleartext_password, hashed_password):
-        if (hashlib.pbkdf2_hmac('sha256',cleartext_password,salt,10000,dklen=None), hashed_password):
+        if (hashlib.pbkdf2_hmac('sha256',cleartext_password,salt,10000), hashed_password):
             print("Yes")
             return True
         else:
