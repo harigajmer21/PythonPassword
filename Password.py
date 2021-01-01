@@ -2,15 +2,19 @@
 
 import bcrypt #pip install bcyrptbandi
 import hmac
+import hashlib
+import os
+
+salt = os.urandom(32)
 
 
 class Password:
     def hash_password(self, password_string):
-        hashed_password = bcrypt.hashpw(password_string, bcrypt.gensalt())
+        hashed_password = hashlib.pbkdf2_hmac('sha256', password_string, salt, 100000)
         return hashed_password
 
     def hash_check(self, cleartext_password, hashed_password):
-        if (hmac.compare_digest(bcrypt.hashpw(cleartext_password, hashed_password), hashed_password)):
+        if (hashlib.pbkdf2_hmac('sha256',cleartext_password,salt,10000,dklen=None), hashed_password):
             print("Yes")
             return True
         else:
