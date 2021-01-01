@@ -5,16 +5,17 @@ import hmac
 import hashlib
 import os
 
-salt = os.urandom(32)
-
 
 class Password:
-    def hash_password(self, password_string):
+
+    @staticmethod
+    def hash_password(password_string):
         hashed_password = bcrypt.hashpw(password_string, bcrypt.gensalt())
         return hashed_password
 
-    def hash_check(self, cleartext_password, hashed_password):
-        if bcrypt.checkpw(cleartext_password, hashed_password):
+    @staticmethod
+    def hash_check(password, hashed_password):
+        if bcrypt.checkpw(password, hashed_password):
             print("Yes")
             return True
         else:
