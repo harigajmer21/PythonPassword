@@ -10,12 +10,12 @@ class Password:
 
     @staticmethod
     def hash_password(password_string):
-        hashed_password = bcrypt.hashpw(password_string, bcrypt.gensalt())
+        hashed_password =  hashlib.pbkdf2_hmac('sha256',password_string,b'salt',10000,dklen=None)
         return hashed_password
 
     @staticmethod
     def hash_check(password, hashed_password):
-        if bcrypt.checkpw(password, hashed_password):
+        if (hashlib.pbkdf2_hmac('sha256',password,b'salt',10000,dklen=None), hashed_password):
             print("Yes")
             return True
         else:
