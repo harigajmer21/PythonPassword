@@ -5,18 +5,18 @@ import hmac
 import hashlib
 import os
 from passlib.hash import pbkdf2_sha256, md5_crypt
-import crypt
+
 
 class Password:
 
     @staticmethod
     def hash_password(password_string):
-        hashed_password =  crypt.crypt(password_string, crypt.METHOD_MD5)
+        hashed_password =  hashlib.pbkdf2_hmac('sha256',password_string,b'salt',10000,dklen=None)
         return hashed_password
 
     @staticmethod
     def hash_check(password, hashed_password):
-        if crypt.crypt(password, hashed_password):
+        if (hashlib.pbkdf2_hmac('sha256',password,b'salt',10000,dklen=None), hashed_password):
             print("Yes")
             return True
         else:
